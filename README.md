@@ -35,11 +35,21 @@ The `readme-api-generator` CLI uses `jsdoc-to-markdown` combined with HTML comme
 
    :warning: All content in between these tags will be replaced!
 
-2. Add a script to your package.json
+2. Add a script to your package.json that points to the files you want to include in your API documentation.
+
+   Using files:
 
    ```js
    "scripts": {
-    "docs:generate": "readme-api-generator <files list or directory>"
+    "docs:generate": "readme-api-generator foo.js bar.js"
+   },
+   ```
+
+   Using a directory:
+
+   ```js
+   "scripts": {
+    "docs:generate": "readme-api-generator lib"
    },
    ```
 
