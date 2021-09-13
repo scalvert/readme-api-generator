@@ -22,75 +22,40 @@ The `readme-api-generator` CLI uses `jsdoc-to-markdown` combined with HTML comme
 
 1. Add tokens to your README.md
 
-   Add `<!--DOCS_START-->
+   Add `<!--DOCS_START-->` and `<!--DOCS_END-->` HTML comments where you'd like your content to be generated.
 
-## Functions
+   ```markdown
+   Some text before the docs.
 
-<dl>
-<dt><a href="#getFiles">getFiles(filesOrDirectory)</a> ⇒</dt>
-<dd><p>Gets a list of JS files to be used to generate the Markdown content.</p>
-</dd>
-<dt><a href="#getReadme">getReadme(workingDir)</a> ⇒</dt>
-<dd><p>Gets and reads the contents of the README.md file.</p>
-</dd>
-<dt><a href="#generateMarkdown">generateMarkdown(files)</a> ⇒</dt>
-<dd><p>Generates the markdown content from the supplied JS files.</p>
-</dd>
-<dt><a href="#writeDocs">writeDocs(readmePath, readmeContent, docsContent)</a></dt>
-<dd><p>Writes the markdown content into the README.md using the supplied placeholders as a marker to position the content.</p>
-</dd>
-</dl>
+   <!--DOCS_START-->
+   <!--DOCS_END-->
 
-<a name="getFiles"></a>
+   Some text after the docs.
+   ```
 
-## getFiles(filesOrDirectory) ⇒
-Gets a list of JS files to be used to generate the Markdown content.
+   :warning: All content in between these tags will be replaced!
 
-**Kind**: global function  
-**Returns**: A list of JS files to be used to generate the markdown.  
+2. Add a script to your package.json
 
-| Param | Type | Description |
-| --- | --- | --- |
-| filesOrDirectory | <code>Array.&lt;string&gt;</code> | The list of files or directory to read. |
+   ```js
+   "scripts": {
+    "docs:generate": "readme-api-generator <files list or directory>"
+   },
+   ```
 
-<a name="getReadme"></a>
+   For projects using TypeScript, you'll want to ensure your TS files are built before generating the docuemntation. The file/directory input should be from your `outDir`.
 
-## getReadme(workingDir) ⇒
-Gets and reads the contents of the README.md file.
+   ```js
+   "scripts": {
+    "docs:generate": "npm run build && readme-api-generator <files list or directory>"
+   },
+   ```
 
-**Kind**: global function  
-**Returns**: A tuple containing the readme file path and content.  
+3. Write your jsdocs!
 
-| Param | Type | Description |
-| --- | --- | --- |
-| workingDir | <code>string</code> | The current working directory. |
+## API
 
-<a name="generateMarkdown"></a>
-
-## generateMarkdown(files) ⇒
-Generates the markdown content from the supplied JS files.
-
-**Kind**: global function  
-**Returns**: The rendered markdown.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| files | <code>Array.&lt;string&gt;</code> | The list of files to generate the markdown content. |
-
-<a name="writeDocs"></a>
-
-## writeDocs(readmePath, readmeContent, docsContent)
-Writes the markdown content into the README.md using the supplied placeholders as a marker to position the content.
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| readmePath | <code>string</code> | The path to the README.md file. |
-| readmeContent | <code>string</code> | The content read from the README.md file. |
-| docsContent | <code>string</code> | The generated markdown to be written to the README.md file. |
-
-
+<!--DOCS_START-->
 <!--DOCS_END-->
 
 ## Contributing

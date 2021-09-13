@@ -3,7 +3,6 @@
 exports[`readme-api-generator writes content for directories 2`] = `
 "Fake readme
 <!--DOCS_START-->
-
 ## Functions
 
 <dl>
@@ -46,7 +45,6 @@ A quite wonderful function.
 exports[`readme-api-generator writes content for multiple files 2`] = `
 "Fake readme
 <!--DOCS_START-->
-
 ## Functions
 
 <dl>
@@ -89,7 +87,6 @@ Another wonderful function.
 exports[`readme-api-generator writes content for single file 2`] = `
 "Fake readme
 <!--DOCS_START-->
-
 <a name=\\"protection\\"></a>
 
 ## protection(cloak, dagger) ⇒ <code>survival</code>

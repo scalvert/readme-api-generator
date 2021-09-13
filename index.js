@@ -74,7 +74,7 @@ async function generateMarkdown(files) {
 function writeDocs(readmePath, readmeContent, docsContent) {
   fs.writeFileSync(
     readmePath,
-    readmeContent.replace(DOCS_PLACEHOLDER, `<!--DOCS_START-->\n\n${docsContent}\n<!--DOCS_END-->`)
+    readmeContent.replace(DOCS_PLACEHOLDER, `<!--DOCS_START-->\n${docsContent}\n<!--DOCS_END-->`)
   );
 }
 
