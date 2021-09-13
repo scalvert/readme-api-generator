@@ -55,8 +55,8 @@ The `readme-api-generator` CLI uses `jsdoc-to-markdown` combined with HTML comme
 
 ## API
 
-<!--DOCS_START-->
-<!--DOCS_END-->
+<!--CUSTOM_START-->
+<!--CUSTOM_END-->
 
 ## Contributing
 
