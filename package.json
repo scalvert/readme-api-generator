@@ -1,0 +1,28 @@
+{
+  "name": "readme-api-generator",
+  "version": "1.0.0",
+  "description": "Generates API documentation in your README",
+  "bin": {
+    "readme-api-generator": "./index.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "engine": {
+    "node": ">=14"
+  },
+  "license": "MIT",
+  "volta": {
+    "node": "14.17.6"
+  },
+  "dependencies": {
+    "jsdoc-to-markdown": "^7.0.1",
+    "meow": "^9.0.0"
+  },
+  "devDependencies": {
+    "execa": "^5.1.1",
+    "fixturify-project": "^3.0.2",
+    "jest": "^27.1.1"
+  }
+}
