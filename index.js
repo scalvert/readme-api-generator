@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const path = require('path');
 const fs = require('fs');
 const meow = require('meow');
@@ -16,14 +18,8 @@ const cli = meow(
 );
 
 function getFiles(input) {
-  if (
-    input.length === 1 &&
-    path.extname(input[0]) !== '.js' &&
-    fs.existsSync(input[0])
-  ) {
-    return fs
-      .readdirSync(input[0])
-      .filter((file) => path.extname(file) === '.js');
+  if (input.length === 1 && path.extname(input[0]) !== '.js' && fs.existsSync(input[0])) {
+    return fs.readdirSync(input[0]).filter((file) => path.extname(file) === '.js');
   } else {
     return input;
   }
@@ -56,10 +52,7 @@ function getReadme(workingDir) {
 function writeDocs(readmePath, readmeContent, docsContent) {
   fs.writeFileSync(
     readmePath,
-    readmeContent.replace(
-      DOCS_PLACEHOLDER,
-      `<!--DOCS_START-->\n\n${docsContent}\n<!--DOCS_END-->`
-    )
+    readmeContent.replace(DOCS_PLACEHOLDER, `<!--DOCS_START-->\n\n${docsContent}\n<!--DOCS_END-->`)
   );
 }
 
