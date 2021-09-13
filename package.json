@@ -1,5 +1,5 @@
 {
-  "name": "readme-api-generator",
+  "name": "@scalvert/readme-api-generator",
   "version": "0.1.0",
   "description": "Generates API documentation in your README",
   "repository": {
@@ -35,6 +35,7 @@
     "release-it-lerna-changelog": "^3.1.0"
   },
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org"
   },
   "engine": {
