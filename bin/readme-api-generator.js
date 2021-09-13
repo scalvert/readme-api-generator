@@ -27,9 +27,8 @@ const cli = meow(
 (async function () {
   const workingDir = process.cwd();
 
-  setMarker(cli.flags.marker);
-
   try {
+    setMarker(cli.flags.marker);
     const [readmePath, readmeContent] = getReadme(workingDir);
 
     let docsContent = await generateMarkdown(cli.input);

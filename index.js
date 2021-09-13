@@ -8,8 +8,7 @@ let _marker = DEFAULT_MARKER;
 
 function setMarker(marker = DEFAULT_MARKER) {
   _marker = marker;
-  // eslint-disable-next-line no-useless-escape
-  _placeholder = new RegExp(`<!--${_marker}_START-->[\S\s]*<!--${_marker}_END-->`);
+  _placeholder = new RegExp(`<!--${_marker}_START-->[\\S\\s]*<!--${_marker}_END-->`);
 }
 
 /**
@@ -44,7 +43,7 @@ function getReadme(workingDir) {
 
     if (!readmeContent.match(_placeholder)) {
       throw new Error(
-        'The README does not contain a valid placeholder (<!--DOCS_START--> followed by a <!--DOCS_END--> HTML comment)'
+        `The README does not contain a valid placeholder (<!--${_marker}_START--> followed by a <!--${_marker}_END--> HTML comment)`
       );
     }
 

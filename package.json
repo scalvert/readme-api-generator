@@ -14,7 +14,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "yarn lint && jest",
-    "docs:generate": "node ./bin/readme-api-generator.js index.js --marker CUSTOM"
+    "docs:generate": "node ./bin/readme-api-generator.js index.js -m CUSTOM"
   },
   "dependencies": {
     "execa": "^5.1.1",
