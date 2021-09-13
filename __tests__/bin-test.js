@@ -172,7 +172,7 @@ function defense (cloak2, dagger2) {}
 
     return execa(
       process.execPath,
-      [require.resolve('../index.js'), ...args],
+      [require.resolve('../bin/readme-api-generator.js'), ...args],
       Object.assign({}, defaults, options)
     );
   }

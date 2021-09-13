@@ -1,30 +1,33 @@
-#!/usr/bin/env node
-
 const path = require('path');
 const fs = require('fs');
-const meow = require('meow');
 const jsdoc2md = require('jsdoc-to-markdown');
 
 const DOCS_PLACEHOLDER = /<!--DOCS_START-->[\S\s]*<!--DOCS_END-->/;
 
-const cli = meow(
-  `
-	Usage
-	  $ readme-api-generator <path to js file(s) or directory>
-
-	Examples
-	  $ readme-api-generator lib/foo.js lib/bar.js
-`
-);
-
-function getFiles(input) {
-  if (input.length === 1 && path.extname(input[0]) !== '.js' && fs.existsSync(input[0])) {
-    return fs.readdirSync(input[0]).filter((file) => path.extname(file) === '.js');
+/**
+ * Gets a list of JS files to be used to generate the Markdown content.
+ *
+ * @param {Array<string>} filesOrDirectory - The list of files or directory to read.
+ * @returns A list of JS files to be used to generate the markdown.
+ */
+function getFiles(filesOrDirectory) {
+  if (
+    filesOrDirectory.length === 1 &&
+    path.extname(filesOrDirectory[0]) !== '.js' &&
+    fs.existsSync(filesOrDirectory[0])
+  ) {
+    return fs.readdirSync(filesOrDirectory[0]).filter((file) => path.extname(file) === '.js');
   } else {
-    return input;
+    return filesOrDirectory;
   }
 }
 
+/**
+ * Gets and reads the contents of the README.md file.
+ *
+ * @param {string} workingDir - The current working directory.
+ * @returns A tuple containing the readme file path and content.
+ */
 function getReadme(workingDir) {
   const readmePath = path.resolve(workingDir, 'README.md');
 
@@ -49,6 +52,25 @@ function getReadme(workingDir) {
   }
 }
 
+/**
+ * Generates the markdown content from the supplied JS files.
+ *
+ * @param {Array<string>} files - The list of files to generate the markdown content.
+ * @returns The rendered markdown.
+ */
+async function generateMarkdown(files) {
+  return await jsdoc2md.render({
+    files: getFiles(files),
+  });
+}
+
+/**
+ * Writes the markdown content into the README.md using the supplied placeholders as a marker to position the content.
+ *
+ * @param {string} readmePath - The path to the README.md file.
+ * @param {string} readmeContent - The content read from the README.md file.
+ * @param {string} docsContent - The generated markdown to be written to the README.md file.
+ */
 function writeDocs(readmePath, readmeContent, docsContent) {
   fs.writeFileSync(
     readmePath,
@@ -56,21 +78,9 @@ function writeDocs(readmePath, readmeContent, docsContent) {
   );
 }
 
-(async function () {
-  const workingDir = process.cwd();
-
-  try {
-    const [readmePath, readmeContent] = getReadme(workingDir);
-
-    let docsContent = await jsdoc2md.render({
-      files: getFiles(cli.input),
-    });
-
-    writeDocs(readmePath, readmeContent, docsContent);
-
-    console.log('README content updated');
-  } catch (error) {
-    console.error(error.message);
-    process.exitCode = 1;
-  }
-})();
+module.exports = {
+  getFiles,
+  getReadme,
+  generateMarkdown,
+  writeDocs,
+};
