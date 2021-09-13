@@ -2,7 +2,15 @@ const path = require('path');
 const fs = require('fs');
 const jsdoc2md = require('jsdoc-to-markdown');
 
-const DOCS_PLACEHOLDER = /<!--DOCS_START-->[\S\s]*<!--DOCS_END-->/;
+const DEFAULT_MARKER = 'DOCS';
+let _placeholder;
+let _marker = DEFAULT_MARKER;
+
+function setMarker(marker = DEFAULT_MARKER) {
+  _marker = marker;
+  // eslint-disable-next-line no-useless-escape
+  _placeholder = new RegExp(`<!--${_marker}_START-->[\S\s]*<!--${_marker}_END-->`);
+}
 
 /**
  * Gets a list of JS files to be used to generate the Markdown content.
@@ -34,7 +42,7 @@ function getReadme(workingDir) {
   try {
     const readmeContent = fs.readFileSync(readmePath, 'utf8');
 
-    if (!readmeContent.match(DOCS_PLACEHOLDER)) {
+    if (!readmeContent.match(_placeholder)) {
       throw new Error(
         'The README does not contain a valid placeholder (<!--DOCS_START--> followed by a <!--DOCS_END--> HTML comment)'
       );
@@ -74,7 +82,10 @@ async function generateMarkdown(files) {
 function writeDocs(readmePath, readmeContent, docsContent) {
   fs.writeFileSync(
     readmePath,
-    readmeContent.replace(DOCS_PLACEHOLDER, `<!--DOCS_START-->\n${docsContent}\n<!--DOCS_END-->`)
+    readmeContent.replace(
+      _placeholder,
+      `<!--${_marker}_START-->\n${docsContent}\n<!--${_marker}_END-->`
+    )
   );
 }
 
@@ -82,5 +93,6 @@ module.exports = {
   getFiles,
   getReadme,
   generateMarkdown,
+  setMarker,
   writeDocs,
 };

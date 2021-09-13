@@ -1,5 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`readme-api-generator can use custom markers 2`] = `
+"Fake readme
+<!--CUSTOM_START-->
+<a name=\\"protection\\"></a>
+
+## protection(cloak, dagger) ⇒ <code>survival</code>
+A quite wonderful function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cloak | <code>object</code> | Privacy gown |
+| dagger | <code>object</code> | Security |
+
+
+<!--CUSTOM_END-->"
+`;
+
 exports[`readme-api-generator writes content for directories 2`] = `
 "Fake readme
 <!--DOCS_START-->

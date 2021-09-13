@@ -164,6 +164,31 @@ function defense (cloak2, dagger2) {}
     expect(result.exitCode).toEqual(0);
   });
 
+  it('can use custom markers', async () => {
+    project.write({
+      'README.md': `Fake readme
+<!--CUSTOM_START--><!--CUSTOM_END-->`,
+      'protection.js': `/**
+ * A quite wonderful function.
+ * @param {object} - Privacy gown
+ * @param {object} - Security
+ * @returns {survival}
+ */
+function protection (cloak, dagger) {}
+`,
+    });
+
+    let result = await run(['protection.js', '--marker', 'CUSTOM']);
+
+    expect(result.stdout).toMatchInlineSnapshot(`"README content updated"`);
+    expect(
+      fs.readFileSync(path.join(project.baseDir, 'README.md'), {
+        encoding: 'utf-8',
+      })
+    ).toMatchSnapshot();
+    expect(result.exitCode).toEqual(0);
+  });
+
   function run(args = [], options = {}) {
     let defaults = {
       reject: false,
