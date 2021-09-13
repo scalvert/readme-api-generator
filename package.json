@@ -2,19 +2,17 @@
   "name": "readme-api-generator",
   "version": "1.0.0",
   "description": "Generates API documentation in your README",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scalvert/readme-api-generator.git"
+  },
+  "license": "MIT",
+  "main": "index.js",
   "bin": {
     "readme-api-generator": "./index.js"
   },
-  "main": "index.js",
   "scripts": {
     "test": "jest"
-  },
-  "engine": {
-    "node": ">=14"
-  },
-  "license": "MIT",
-  "volta": {
-    "node": "14.17.6"
   },
   "dependencies": {
     "jsdoc-to-markdown": "^6.0.1",
@@ -23,6 +21,32 @@
   "devDependencies": {
     "execa": "^5.1.1",
     "fixturify-project": "^3.0.2",
-    "jest": "^27.1.1"
+    "jest": "^27.1.1",
+    "release-it": "^14.2.1",
+    "release-it-lerna-changelog": "^3.1.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "engine": {
+    "node": ">=14"
+  },
+  "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": true
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "tokenRef": "GITHUB_AUTH"
+    }
+  },
+  "volta": {
+    "node": "14.17.6"
   }
 }
