@@ -9,11 +9,12 @@
   "license": "MIT",
   "main": "index.js",
   "bin": {
-    "readme-api-generator": "./index.js"
+    "readme-api-generator": "./bin/readme-api-generator.js"
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "jest"
+    "test": "yarn lint && jest",
+    "docs:generate": "node ./bin/readme-api-generator.js index.js"
   },
   "dependencies": {
     "execa": "^5.1.1",
