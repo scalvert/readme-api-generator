@@ -17,10 +17,13 @@
     "docs:generate": "node ./bin/readme-api-generator.js index.js -m CUSTOM"
   },
   "dependencies": {
+    "@babel/cli": "^7.17.6",
     "execa": "^5.1.1",
     "fixturify-project": "^3.0.2",
+    "jsdoc-babel": "^0.5.0",
     "jsdoc-to-markdown": "^6.0.1",
-    "meow": "^9.0.0"
+    "meow": "^9.0.0",
+    "typescript": "^4.6.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

@@ -1,6 +1,6 @@
 # readme-api-generator
 
-Generates API documentation for your README, converting JS to Markdown.
+Generates API documentation for your README, converting JSDoc to Markdown.
 
 ## Installation
 
@@ -39,7 +39,7 @@ The `readme-api-generator` CLI uses `jsdoc-to-markdown` combined with HTML comme
 
    Using files:
 
-   ```js
+   ```json
    "scripts": {
     "docs:generate": "readme-api-generator foo.js bar.js"
    },
@@ -47,17 +47,35 @@ The `readme-api-generator` CLI uses `jsdoc-to-markdown` combined with HTML comme
 
    Using a directory:
 
-   ```js
+   ```json
    "scripts": {
     "docs:generate": "readme-api-generator lib"
    },
    ```
 
-   For projects using TypeScript, you'll want to ensure your TS files are built before generating the docuemntation. The file/directory input should be from your `outDir`.
+   For projects using TypeScript, you can either ensure your TS files are built before generating the docuemntation. The file/directory input should be from your `outDir`.
 
-   ```js
+   ```json
    "scripts": {
     "docs:generate": "npm run build && readme-api-generator <files list or directory>"
+   },
+   ```
+
+   Or you can generate the markdown from the TypeScript files directly. You'll first need to install the following packages:
+
+   ```shell
+   npm i @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-transform-typescript @babel/preset-env @babel/preset-typescript --save-dev
+
+   #or
+
+   yarn add @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-transform-typescript @babel/preset-env @babel/preset-typescript --dev
+   ```
+
+   Then add the following to your `package.json`, where `src` is the path your TypeScript files are in:
+
+   ```json
+   "scripts": {
+    "docs:generate": "readme-api-generator ./src --ts"
    },
    ```
 
@@ -66,18 +84,17 @@ The `readme-api-generator` CLI uses `jsdoc-to-markdown` combined with HTML comme
 ## API
 
 <!--CUSTOM_START-->
-
 ## Functions
 
 <dl>
 <dt><a href="#getFiles">getFiles(filesOrDirectory)</a> ⇒</dt>
-<dd><p>Gets a list of JS files to be used to generate the Markdown content.</p>
+<dd><p>Gets a list of files to be used to generate the Markdown content.</p>
 </dd>
 <dt><a href="#getReadme">getReadme(workingDir)</a> ⇒</dt>
 <dd><p>Gets and reads the contents of the README.md file.</p>
 </dd>
 <dt><a href="#generateMarkdown">generateMarkdown(files)</a> ⇒</dt>
-<dd><p>Generates the markdown content from the supplied JS files.</p>
+<dd><p>Generates the markdown content from the supplied files.</p>
 </dd>
 <dt><a href="#writeDocs">writeDocs(readmePath, readmeContent, docsContent)</a></dt>
 <dd><p>Writes the markdown content into the README.md using the supplied placeholders as a marker to position the content.</p>
@@ -87,55 +104,52 @@ The `readme-api-generator` CLI uses `jsdoc-to-markdown` combined with HTML comme
 <a name="getFiles"></a>
 
 ## getFiles(filesOrDirectory) ⇒
+Gets a list of files to be used to generate the Markdown content.
 
-Gets a list of JS files to be used to generate the Markdown content.
+**Kind**: global function  
+**Returns**: A list of files to be used to generate the markdown.  
 
-**Kind**: global function
-**Returns**: A list of JS files to be used to generate the markdown.
-
-| Param            | Type                              | Description                             |
-| ---------------- | --------------------------------- | --------------------------------------- |
+| Param | Type | Description |
+| --- | --- | --- |
 | filesOrDirectory | <code>Array.&lt;string&gt;</code> | The list of files or directory to read. |
 
 <a name="getReadme"></a>
 
 ## getReadme(workingDir) ⇒
-
 Gets and reads the contents of the README.md file.
 
-**Kind**: global function
-**Returns**: A tuple containing the readme file path and content.
+**Kind**: global function  
+**Returns**: A tuple containing the readme file path and content.  
 
-| Param      | Type                | Description                    |
-| ---------- | ------------------- | ------------------------------ |
+| Param | Type | Description |
+| --- | --- | --- |
 | workingDir | <code>string</code> | The current working directory. |
 
 <a name="generateMarkdown"></a>
 
 ## generateMarkdown(files) ⇒
+Generates the markdown content from the supplied files.
 
-Generates the markdown content from the supplied JS files.
+**Kind**: global function  
+**Returns**: The rendered markdown.  
 
-**Kind**: global function
-**Returns**: The rendered markdown.
-
-| Param | Type                              | Description                                         |
-| ----- | --------------------------------- | --------------------------------------------------- |
+| Param | Type | Description |
+| --- | --- | --- |
 | files | <code>Array.&lt;string&gt;</code> | The list of files to generate the markdown content. |
 
 <a name="writeDocs"></a>
 
 ## writeDocs(readmePath, readmeContent, docsContent)
-
 Writes the markdown content into the README.md using the supplied placeholders as a marker to position the content.
 
-**Kind**: global function
+**Kind**: global function  
 
-| Param         | Type                | Description                                                 |
-| ------------- | ------------------- | ----------------------------------------------------------- |
-| readmePath    | <code>string</code> | The path to the README.md file.                             |
-| readmeContent | <code>string</code> | The content read from the README.md file.                   |
-| docsContent   | <code>string</code> | The generated markdown to be written to the README.md file. |
+| Param | Type | Description |
+| --- | --- | --- |
+| readmePath | <code>string</code> | The path to the README.md file. |
+| readmeContent | <code>string</code> | The content read from the README.md file. |
+| docsContent | <code>string</code> | The generated markdown to be written to the README.md file. |
+
 
 <!--CUSTOM_END-->
 

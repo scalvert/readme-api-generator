@@ -12,18 +12,21 @@ function setMarker(marker = DEFAULT_MARKER) {
 }
 
 /**
- * Gets a list of JS files to be used to generate the Markdown content.
+ * Gets a list of files to be used to generate the Markdown content.
  *
  * @param {Array<string>} filesOrDirectory - The list of files or directory to read.
- * @returns A list of JS files to be used to generate the markdown.
+ * @returns A list of files to be used to generate the markdown.
  */
 function getFiles(filesOrDirectory) {
   if (
     filesOrDirectory.length === 1 &&
-    path.extname(filesOrDirectory[0]) !== '.js' &&
+    fs.statSync(filesOrDirectory[0]).isDirectory() &&
     fs.existsSync(filesOrDirectory[0])
   ) {
-    return fs.readdirSync(filesOrDirectory[0]).filter((file) => path.extname(file) === '.js');
+    return fs
+      .readdirSync(filesOrDirectory[0])
+      .filter((file) => ['.js', '.ts'].includes(path.extname(file)))
+      .map((file) => path.join(filesOrDirectory[0], file));
   } else {
     return filesOrDirectory;
   }
@@ -60,15 +63,26 @@ function getReadme(workingDir) {
 }
 
 /**
- * Generates the markdown content from the supplied JS files.
+ * Generates the markdown content from the supplied files.
  *
  * @param {Array<string>} files - The list of files to generate the markdown content.
  * @returns The rendered markdown.
  */
-async function generateMarkdown(files) {
-  return await jsdoc2md.render({
+async function generateMarkdown(files, flags) {
+  let options = {
     files: getFiles(files),
-  });
+  };
+
+  if (flags.typescript) {
+    options = {
+      ...options,
+      ...{
+        configure: require.resolve('./jsdoc2md.json'),
+      },
+    };
+  }
+
+  return await jsdoc2md.render(options);
 }
 
 /**
