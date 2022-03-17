@@ -6,16 +6,22 @@ const { getReadme, generateMarkdown, writeDocs, setMarker } = require('../index'
 const cli = meow(
   `
 	Usage
-	  $ readme-api-generator <path to js file(s) or directory>
+	  $ readme-api-generator <path to file(s) or directory>
 
   Options
+    --typescript, --ts Generate from TypeScript files
     --marker, -m Specify a custom marker
 
 	Examples
-	  $ readme-api-generator lib/foo.js lib/bar.js
+	  $ readme-api-generator lib/foo.js lib/bar.ts
 `,
   {
     flags: {
+      typescript: {
+        type: 'boolean',
+        alias: 'ts',
+        default: false,
+      },
       marker: {
         type: 'string',
         alias: 'm',
@@ -31,7 +37,7 @@ const cli = meow(
     setMarker(cli.flags.marker);
     const [readmePath, readmeContent] = getReadme(workingDir);
 
-    let docsContent = await generateMarkdown(cli.input);
+    let docsContent = await generateMarkdown(cli.input, cli.flags);
 
     writeDocs(readmePath, readmeContent, docsContent);
 
