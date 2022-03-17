@@ -35,12 +35,13 @@
   },
   "overrides": [
     {
-      "files": ["__tests__/**/*.js"],
+      "files": ["tests/**/*.js"],
       "env": {
         "jest": true
       },
       "rules": {
-        "node/no-extraneous-import": "off"
+        "node/no-extraneous-import": "off",
+        "node/no-unpublished-import": "off"
       }
     }
   ]
