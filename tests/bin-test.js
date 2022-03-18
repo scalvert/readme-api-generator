@@ -93,7 +93,7 @@ function protection (cloak, dagger) {}
       fs.readFileSync(path.join(project.baseDir, 'README.md'), {
         encoding: 'utf-8',
       })
-    ).toMatchInlineSnapshot();
+    ).toMatchSnapshot();
     expect(result.exitCode).toEqual(0);
   });
 
@@ -125,25 +125,25 @@ function defense (cloak2, dagger2) {}
       "Fake readme
       <!--DOCS_START-->
       <a name=\\"protection\\"></a>
-      
+
       ## protection(cloak, dagger) ⇒ <code>survival</code>
       A quite wonderful function.
-      
-      **Kind**: global function  
-      
+
+      **Kind**: global function
+
       | Param | Type | Description |
       | --- | --- | --- |
       | cloak | <code>object</code> | Privacy gown |
       | dagger | <code>object</code> | Security |
-      
-      
+
+
       <!--DOCS_END-->"
     `);
     expect(
       fs.readFileSync(path.join(project.baseDir, 'README.md'), {
         encoding: 'utf-8',
       })
-    ).toMatchInlineSnapshot();
+    ).toMatchSnapshot();
     expect(result.exitCode).toEqual(0);
   });
 
@@ -173,52 +173,12 @@ function defense (cloak2, dagger2) {}
 
     let result = await run(['lib']);
 
-    expect(result.stdout).toMatchInlineSnapshot(`
-      "Fake readme
-      <!--DOCS_START-->
-      ## Functions
-      
-      <dl>
-      <dt><a href=\\"#protection\\">protection(cloak, dagger)</a> ⇒ <code>survival</code></dt>
-      <dd><p>A quite wonderful function.</p>
-      </dd>
-      <dt><a href=\\"#defense\\">defense(cloak2, dagger2)</a> ⇒ <code>alive</code></dt>
-      <dd><p>Another wonderful function.</p>
-      </dd>
-      </dl>
-      
-      <a name=\\"protection\\"></a>
-      
-      ## protection(cloak, dagger) ⇒ <code>survival</code>
-      A quite wonderful function.
-      
-      **Kind**: global function  
-      
-      | Param | Type | Description |
-      | --- | --- | --- |
-      | cloak | <code>object</code> | Privacy gown |
-      | dagger | <code>object</code> | Security |
-      
-      <a name=\\"defense\\"></a>
-      
-      ## defense(cloak2, dagger2) ⇒ <code>alive</code>
-      Another wonderful function.
-      
-      **Kind**: global function  
-      
-      | Param | Type | Description |
-      | --- | --- | --- |
-      | cloak2 | <code>object</code> | Privacy gown |
-      | dagger2 | <code>object</code> | Security |
-      
-      
-      <!--DOCS_END-->"
-    `);
+    expect(result.stdout).toMatchInlineSnapshot('"README content updated"');
     expect(
       fs.readFileSync(path.join(project.baseDir, 'README.md'), {
         encoding: 'utf-8',
       })
-    ).toMatchInlineSnapshot();
+    ).toMatchSnapshot();
     expect(result.exitCode).toEqual(0);
   });
 
@@ -238,52 +198,12 @@ function protection (cloak, dagger) {}
 
     let result = await run(['protection.js', '--marker', 'CUSTOM']);
 
-    expect(result.stdout).toMatchInlineSnapshot(`
-      "Fake readme
-      <!--DOCS_START-->
-      ## Functions
-      
-      <dl>
-      <dt><a href=\\"#defense\\">defense(cloak2, dagger2)</a> ⇒ <code>alive</code></dt>
-      <dd><p>Another wonderful function.</p>
-      </dd>
-      <dt><a href=\\"#protection\\">protection(cloak, dagger)</a> ⇒ <code>survival</code></dt>
-      <dd><p>A quite wonderful function.</p>
-      </dd>
-      </dl>
-      
-      <a name=\\"defense\\"></a>
-      
-      ## defense(cloak2, dagger2) ⇒ <code>alive</code>
-      Another wonderful function.
-      
-      **Kind**: global function  
-      
-      | Param | Type | Description |
-      | --- | --- | --- |
-      | cloak2 | <code>object</code> | Privacy gown |
-      | dagger2 | <code>object</code> | Security |
-      
-      <a name=\\"protection\\"></a>
-      
-      ## protection(cloak, dagger) ⇒ <code>survival</code>
-      A quite wonderful function.
-      
-      **Kind**: global function  
-      
-      | Param | Type | Description |
-      | --- | --- | --- |
-      | cloak | <code>object</code> | Privacy gown |
-      | dagger | <code>object</code> | Security |
-      
-      
-      <!--DOCS_END-->"
-    `);
+    expect(result.stdout).toMatchInlineSnapshot('"README content updated"');
     expect(
       fs.readFileSync(path.join(project.baseDir, 'README.md'), {
         encoding: 'utf-8',
       })
-    ).toMatchInlineSnapshot();
+    ).toMatchSnapshot();
     expect(result.exitCode).toEqual(0);
   });
 
