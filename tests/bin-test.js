@@ -121,7 +121,7 @@ function defense (cloak2, dagger2) {}
 
     let result = await run(['protection.js', 'defense.js']);
 
-    expect(result.stdout).toMatchInlineSnapshot();
+    expect(result.stdout).toMatchInlineSnapshot('"README content updated"');
     expect(
       fs.readFileSync(path.join(project.baseDir, 'README.md'), {
         encoding: 'utf-8',
