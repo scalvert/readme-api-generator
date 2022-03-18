@@ -7,25 +7,46 @@
     "url": "https://github.com/scalvert/readme-api-generator.git"
   },
   "license": "MIT",
-  "main": "index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "bin": {
     "readme-api-generator": "./bin/readme-api-generator.js"
   },
+  "files": [
+    "dist",
+    "bin"
+  ],
   "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "docs:generate": "node ./bin/readme-api-generator.js index.js -m CUSTOM",
     "lint": "eslint .",
+    "prepublishOnly": "npm run build",
     "test": "yarn lint && vitest run",
-    "docs:generate": "node ./bin/readme-api-generator.js index.js -m CUSTOM"
+    "test:watch": "vitest",
+    "watch": "npm run build -- --watch src"
   },
   "dependencies": {
     "@babel/cli": "^7.17.6",
     "jsdoc-babel": "^0.5.0",
     "jsdoc-to-markdown": "^6.0.1",
-    "meow": "^9.0.0",
+    "meow": "^10.1.2",
     "typescript": "^4.6.2"
   },
   "devDependencies": {
     "@scalvert/bin-tester": "^0.3.0",
-    "babel-eslint": "^10.1.0",
+    "@types/jsdoc-to-markdown": "^7.0.3",
+    "@types/node": "^17.0.21",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-node": "^11.1.0",
@@ -33,6 +54,7 @@
     "prettier": "^2.4.0",
     "release-it": "^14.2.1",
     "release-it-lerna-changelog": "^3.1.0",
+    "tsup": "^5.12.1",
     "vite": "^2.8.6",
     "vitest": "^0.7.4"
   },
