@@ -1,13 +1,7 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["jest", "prettier"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:jest/recommended",
-    "plugin:jest/style",
-    "plugin:node/recommended",
-    "prettier"
-  ],
+  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "plugin:node/recommended", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
@@ -35,12 +29,10 @@
   },
   "overrides": [
     {
-      "files": ["__tests__/**/*.js"],
-      "env": {
-        "jest": true
-      },
+      "files": ["tests/**/*.js"],
       "rules": {
-        "node/no-extraneous-import": "off"
+        "node/no-extraneous-import": "off",
+        "node/no-unpublished-import": "off"
       }
     }
   ]

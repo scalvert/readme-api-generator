@@ -1,7 +1,8 @@
-const path = require('path');
-const fs = require('fs');
-const { Project } = require('fixturify-project');
-const execa = require('execa');
+import path from 'path';
+import fs from 'fs';
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
+import { Project } from 'fixturify-project';
+import execa from 'execa';
 
 class FakeProject extends Project {
   write(dirJSON) {
@@ -120,7 +121,7 @@ function defense (cloak2, dagger2) {}
 
     let result = await run(['protection.js', 'defense.js']);
 
-    expect(result.stdout).toMatchInlineSnapshot(`"README content updated"`);
+    expect(result.stdout).toMatchInlineSnapshot('"README content updated"');
     expect(
       fs.readFileSync(path.join(project.baseDir, 'README.md'), {
         encoding: 'utf-8',
@@ -155,7 +156,7 @@ function defense (cloak2, dagger2) {}
 
     let result = await run(['lib']);
 
-    expect(result.stdout).toMatchInlineSnapshot(`"README content updated"`);
+    expect(result.stdout).toMatchInlineSnapshot('"README content updated"');
     expect(
       fs.readFileSync(path.join(project.baseDir, 'README.md'), {
         encoding: 'utf-8',
@@ -180,7 +181,7 @@ function protection (cloak, dagger) {}
 
     let result = await run(['protection.js', '--marker', 'CUSTOM']);
 
-    expect(result.stdout).toMatchInlineSnapshot(`"README content updated"`);
+    expect(result.stdout).toMatchInlineSnapshot('"README content updated"');
     expect(
       fs.readFileSync(path.join(project.baseDir, 'README.md'), {
         encoding: 'utf-8',
