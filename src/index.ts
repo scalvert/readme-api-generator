@@ -1,12 +1,13 @@
-const path = require('path');
-const fs = require('fs');
-const jsdoc2md = require('jsdoc-to-markdown');
+import { join, extname, resolve } from 'node:path';
+import { statSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import jsdoc2md from 'jsdoc-to-markdown';
 
 const DEFAULT_MARKER = 'DOCS';
-let _placeholder;
-let _marker = DEFAULT_MARKER;
+let _placeholder: RegExp;
+let _marker: string = DEFAULT_MARKER;
 
-function setMarker(marker = DEFAULT_MARKER) {
+export function setMarker(marker: string = DEFAULT_MARKER) {
   _marker = marker;
   _placeholder = new RegExp(`<!--${_marker}_START-->[\\S\\s]*<!--${_marker}_END-->`);
 }
@@ -14,19 +15,18 @@ function setMarker(marker = DEFAULT_MARKER) {
 /**
  * Gets a list of files to be used to generate the Markdown content.
  *
- * @param {Array<string>} filesOrDirectory - The list of files or directory to read.
+ * @param {string[]} filesOrDirectory - The list of files or directory to read.
  * @returns A list of files to be used to generate the markdown.
  */
-function getFiles(filesOrDirectory) {
+export function getFiles(filesOrDirectory: string[]) {
   if (
     filesOrDirectory.length === 1 &&
-    fs.statSync(filesOrDirectory[0]).isDirectory() &&
-    fs.existsSync(filesOrDirectory[0])
+    statSync(filesOrDirectory[0]).isDirectory() &&
+    existsSync(filesOrDirectory[0])
   ) {
-    return fs
-      .readdirSync(filesOrDirectory[0])
-      .filter((file) => ['.js', '.ts'].includes(path.extname(file)))
-      .map((file) => path.join(filesOrDirectory[0], file));
+    return readdirSync(filesOrDirectory[0])
+      .filter((file) => ['.js', '.ts'].includes(extname(file)))
+      .map((file) => join(filesOrDirectory[0], file));
   } else {
     return filesOrDirectory;
   }
@@ -38,11 +38,11 @@ function getFiles(filesOrDirectory) {
  * @param {string} workingDir - The current working directory.
  * @returns A tuple containing the readme file path and content.
  */
-function getReadme(workingDir) {
-  const readmePath = path.resolve(workingDir, 'README.md');
+export function getReadme(workingDir: string) {
+  const readmePath = resolve(workingDir, 'README.md');
 
   try {
-    const readmeContent = fs.readFileSync(readmePath, 'utf8');
+    const readmeContent = readFileSync(readmePath, 'utf8');
 
     if (!readmeContent.match(_placeholder)) {
       throw new Error(
@@ -52,7 +52,7 @@ function getReadme(workingDir) {
 
     return [readmePath, readmeContent];
   } catch (error) {
-    if (error.code === 'ENOENT') {
+    if (isNodeError(error) && error.code === 'ENOENT') {
       throw new Error(
         'No README found. Please run readme-api-generator from a directory that contains a README.md file.'
       );
@@ -65,10 +65,10 @@ function getReadme(workingDir) {
 /**
  * Generates the markdown content from the supplied files.
  *
- * @param {Array<string>} files - The list of files to generate the markdown content.
+ * @param {string[]} files - The list of files to generate the markdown content.
  * @returns The rendered markdown.
  */
-async function generateMarkdown(files, flags) {
+export async function generateMarkdown(files: string[], flags: Record<string, unknown>) {
   let options = {
     files: getFiles(files),
   };
@@ -77,7 +77,7 @@ async function generateMarkdown(files, flags) {
     options = {
       ...options,
       ...{
-        configure: require.resolve('./jsdoc2md.json'),
+        configure: fileURLToPath(new URL('./jsdoc2md.json', import.meta.url)),
       },
     };
   }
@@ -92,8 +92,8 @@ async function generateMarkdown(files, flags) {
  * @param {string} readmeContent - The content read from the README.md file.
  * @param {string} docsContent - The generated markdown to be written to the README.md file.
  */
-function writeDocs(readmePath, readmeContent, docsContent) {
-  fs.writeFileSync(
+export function writeDocs(readmePath: string, readmeContent: string, docsContent: string) {
+  writeFileSync(
     readmePath,
     readmeContent.replace(
       _placeholder,
@@ -102,10 +102,4 @@ function writeDocs(readmePath, readmeContent, docsContent) {
   );
 }
 
-module.exports = {
-  getFiles,
-  getReadme,
-  generateMarkdown,
-  setMarker,
-  writeDocs,
-};
+const isNodeError = (error: unknown): error is NodeJS.ErrnoException => error instanceof Error;

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const meow = require('meow');
-const { getReadme, generateMarkdown, writeDocs, setMarker } = require('../index');
+import meow from 'meow';
+import { getReadme, generateMarkdown, writeDocs, setMarker } from '../dist/index.js';
 
 const cli = meow(
   `
@@ -16,6 +16,7 @@ const cli = meow(
 	  $ readme-api-generator lib/foo.js lib/bar.ts
 `,
   {
+    importMeta: import.meta,
     flags: {
       typescript: {
         type: 'boolean',
