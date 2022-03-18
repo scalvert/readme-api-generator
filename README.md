@@ -1,4 +1,4 @@
-# readme-api-generator
+# @scalvert/readme-api-generator
 
 Generates API documentation for your README, converting JSDoc to Markdown.
 
