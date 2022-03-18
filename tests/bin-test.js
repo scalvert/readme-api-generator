@@ -121,24 +121,7 @@ function defense (cloak2, dagger2) {}
 
     let result = await run(['protection.js', 'defense.js']);
 
-    expect(result.stdout).toMatchInlineSnapshot(`
-      "Fake readme
-      <!--DOCS_START-->
-      <a name=\\"protection\\"></a>
-
-      ## protection(cloak, dagger) ⇒ <code>survival</code>
-      A quite wonderful function.
-
-      **Kind**: global function
-
-      | Param | Type | Description |
-      | --- | --- | --- |
-      | cloak | <code>object</code> | Privacy gown |
-      | dagger | <code>object</code> | Security |
-
-
-      <!--DOCS_END-->"
-    `);
+    expect(result.stdout).toMatchInlineSnapshot();
     expect(
       fs.readFileSync(path.join(project.baseDir, 'README.md'), {
         encoding: 'utf-8',
