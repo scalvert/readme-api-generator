@@ -1,4 +1,17 @@
 
+
+## v0.2.0 (2022-03-18)
+
+#### :rocket: Enhancement
+* [#5](https://github.com/scalvert/readme-api-generator/pull/5) Adding support for TypeScript ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* [#6](https://github.com/scalvert/readme-api-generator/pull/6) Convert to vitest ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.1.0 (2021-09-13)
 
 #### :rocket: Enhancement
