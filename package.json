@@ -23,7 +23,8 @@
   },
   "files": [
     "dist",
-    "bin"
+    "bin",
+    "jsdoc2md.json"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --clean",
