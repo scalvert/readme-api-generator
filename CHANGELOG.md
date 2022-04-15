@@ -2,6 +2,16 @@
 
 
 
+
+## v0.2.3 (2022-04-15)
+
+#### :bug: Bug Fix
+* [#11](https://github.com/scalvert/readme-api-generator/pull/11) Fixing relative pathing for JSON file. ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.2.2 (2022-04-15)
 
 #### :bug: Bug Fix
