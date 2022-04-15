@@ -1,5 +1,18 @@
 
 
+
+## v0.2.1 (2022-04-15)
+
+#### :rocket: Enhancement
+* [#8](https://github.com/scalvert/readme-api-generator/pull/8) Converts package to esm with multi-target exports ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* [#7](https://github.com/scalvert/readme-api-generator/pull/7) Convert to bin-tester ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.2.0 (2022-03-18)
 
 #### :rocket: Enhancement
