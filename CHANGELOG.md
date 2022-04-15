@@ -1,6 +1,16 @@
 
 
 
+
+## v0.2.2 (2022-04-15)
+
+#### :bug: Bug Fix
+* [#10](https://github.com/scalvert/readme-api-generator/pull/10) Add missing file to published artifacts. ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.2.1 (2022-04-15)
 
 #### :rocket: Enhancement
