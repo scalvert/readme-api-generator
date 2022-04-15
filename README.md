@@ -61,15 +61,7 @@ The `readme-api-generator` CLI uses `jsdoc-to-markdown` combined with HTML comme
    },
    ```
 
-   Or you can generate the markdown from the TypeScript files directly. You'll first need to install the following packages:
-
-   ```shell
-   npm i @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-transform-typescript @babel/preset-env @babel/preset-typescript --save-dev
-
-   #or
-
-   yarn add @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/plugin-transform-typescript @babel/preset-env @babel/preset-typescript --dev
-   ```
+   Or you can generate the markdown from the TypeScript files directly.
 
    Then add the following to your `package.json`, where `src` is the path your TypeScript files are in:
 
@@ -106,8 +98,8 @@ The `readme-api-generator` CLI uses `jsdoc-to-markdown` combined with HTML comme
 ## getFiles(filesOrDirectory) ⇒
 Gets a list of files to be used to generate the Markdown content.
 
-**Kind**: global function  
-**Returns**: A list of files to be used to generate the markdown.  
+**Kind**: global function
+**Returns**: A list of files to be used to generate the markdown.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -118,8 +110,8 @@ Gets a list of files to be used to generate the Markdown content.
 ## getReadme(workingDir) ⇒
 Gets and reads the contents of the README.md file.
 
-**Kind**: global function  
-**Returns**: A tuple containing the readme file path and content.  
+**Kind**: global function
+**Returns**: A tuple containing the readme file path and content.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -130,8 +122,8 @@ Gets and reads the contents of the README.md file.
 ## generateMarkdown(files) ⇒
 Generates the markdown content from the supplied files.
 
-**Kind**: global function  
-**Returns**: The rendered markdown.  
+**Kind**: global function
+**Returns**: The rendered markdown.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -142,7 +134,7 @@ Generates the markdown content from the supplied files.
 ## writeDocs(readmePath, readmeContent, docsContent)
 Writes the markdown content into the README.md using the supplied placeholders as a marker to position the content.
 
-**Kind**: global function  
+**Kind**: global function
 
 | Param | Type | Description |
 | --- | --- | --- |
