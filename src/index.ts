@@ -77,7 +77,7 @@ export async function generateMarkdown(files: string[], flags: Record<string, un
     options = {
       ...options,
       ...{
-        configure: fileURLToPath(new URL('./jsdoc2md.json', import.meta.url)),
+        configure: fileURLToPath(new URL('../jsdoc2md.json', import.meta.url)),
       },
     };
   }
