@@ -1,0 +1,123 @@
+// Vitest Snapshot v1
+
+exports[`readme-api-generator > can use custom markers 2`] = `
+"Fake readme
+<!--CUSTOM_START-->
+<a name=\\"protection\\"></a>
+
+## protection(cloak, dagger) ⇒ <code>survival</code>
+A quite wonderful function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cloak | <code>object</code> | Privacy gown |
+| dagger | <code>object</code> | Security |
+
+
+<!--CUSTOM_END-->"
+`;
+
+exports[`readme-api-generator > writes content for directories 2`] = `
+"Fake readme
+<!--DOCS_START-->
+## Functions
+
+<dl>
+<dt><a href=\\"#defense\\">defense(cloak2, dagger2)</a> ⇒ <code>alive</code></dt>
+<dd><p>Another wonderful function.</p>
+</dd>
+<dt><a href=\\"#protection\\">protection(cloak, dagger)</a> ⇒ <code>survival</code></dt>
+<dd><p>A quite wonderful function.</p>
+</dd>
+</dl>
+
+<a name=\\"defense\\"></a>
+
+## defense(cloak2, dagger2) ⇒ <code>alive</code>
+Another wonderful function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cloak2 | <code>object</code> | Privacy gown |
+| dagger2 | <code>object</code> | Security |
+
+<a name=\\"protection\\"></a>
+
+## protection(cloak, dagger) ⇒ <code>survival</code>
+A quite wonderful function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cloak | <code>object</code> | Privacy gown |
+| dagger | <code>object</code> | Security |
+
+
+<!--DOCS_END-->"
+`;
+
+exports[`readme-api-generator > writes content for multiple files 2`] = `
+"Fake readme
+<!--DOCS_START-->
+## Functions
+
+<dl>
+<dt><a href=\\"#protection\\">protection(cloak, dagger)</a> ⇒ <code>survival</code></dt>
+<dd><p>A quite wonderful function.</p>
+</dd>
+<dt><a href=\\"#defense\\">defense(cloak2, dagger2)</a> ⇒ <code>alive</code></dt>
+<dd><p>Another wonderful function.</p>
+</dd>
+</dl>
+
+<a name=\\"protection\\"></a>
+
+## protection(cloak, dagger) ⇒ <code>survival</code>
+A quite wonderful function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cloak | <code>object</code> | Privacy gown |
+| dagger | <code>object</code> | Security |
+
+<a name=\\"defense\\"></a>
+
+## defense(cloak2, dagger2) ⇒ <code>alive</code>
+Another wonderful function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cloak2 | <code>object</code> | Privacy gown |
+| dagger2 | <code>object</code> | Security |
+
+
+<!--DOCS_END-->"
+`;
+
+exports[`readme-api-generator > writes content for single file 2`] = `
+"Fake readme
+<!--DOCS_START-->
+<a name=\\"protection\\"></a>
+
+## protection(cloak, dagger) ⇒ <code>survival</code>
+A quite wonderful function.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cloak | <code>object</code> | Privacy gown |
+| dagger | <code>object</code> | Security |
+
+
+<!--DOCS_END-->"
+`;
