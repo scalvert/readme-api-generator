@@ -1,6 +1,6 @@
 {
   "name": "@scalvert/readme-api-generator",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Generates API documentation in your README",
   "repository": {
     "type": "git",
