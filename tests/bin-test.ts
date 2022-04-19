@@ -28,7 +28,7 @@ describe('readme-api-generator', () => {
   });
 
   it('returns error if README does not contain start or end placeholders', async () => {
-    await project.writeDirJSON({
+    await project.write({
       'README.md': '',
     });
 
@@ -41,7 +41,7 @@ describe('readme-api-generator', () => {
   });
 
   it('returns error if README does not contain start placeholder', async () => {
-    await project.writeDirJSON({
+    await project.write({
       'README.md': '<!--DOCS_END-->',
     });
 
@@ -54,7 +54,7 @@ describe('readme-api-generator', () => {
   });
 
   it('returns error if README does not contain end placeholder', async () => {
-    await project.writeDirJSON({
+    await project.write({
       'README.md': '<!--DOCS_START-->',
     });
 
@@ -67,7 +67,7 @@ describe('readme-api-generator', () => {
   });
 
   it('writes content for single file', async () => {
-    await project.writeDirJSON({
+    await project.write({
       'README.md': `Fake readme
 <!--DOCS_START--><!--DOCS_END-->`,
       'protection.js': `/**
@@ -92,7 +92,7 @@ function protection (cloak, dagger) {}
   });
 
   it('writes content for multiple files', async () => {
-    await project.writeDirJSON({
+    await project.write({
       'README.md': `Fake readme
 <!--DOCS_START--><!--DOCS_END-->`,
       'protection.js': `/**
@@ -125,7 +125,7 @@ function defense (cloak2, dagger2) {}
   });
 
   it('writes content for directories', async () => {
-    await project.writeDirJSON({
+    await project.write({
       'README.md': `Fake readme
 <!--DOCS_START--><!--DOCS_END-->`,
       lib: {
@@ -160,7 +160,7 @@ function defense (cloak2, dagger2) {}
   });
 
   it('can use custom markers', async () => {
-    await project.writeDirJSON({
+    await project.write({
       'README.md': `Fake readme
 <!--CUSTOM_START--><!--CUSTOM_END-->`,
       'protection.js': `/**
